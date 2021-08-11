@@ -1,8 +1,14 @@
-// Your data needs a place to live when there is no Internet connection. That's what the cache is for. There is the general cache for images and such, and a data cache for data-specific stuff. I would just follow the naming conventions you see here. Note the versioning on each cache name. This is important.
+// Your data needs a place to live when there is no Internet connection. That's what the cache is for. 
+//There is the general cache for images and such, and a data cache for data-specific stuff. 
+//I would just follow the naming conventions you see here. 
+//Note the versioning on each cache name. This is important.
+
 const CACHE_NAME = "my-site-cache-v1";
 const DATA_CACHE_NAME = "data-cache-v1";
 
-// We need to provide an array of all urls that our PWA should cache. In other words, we're telling the PWA to be prepared to use the service worker anytime the browser tries to hit any of these routes. In a large web app there could be lots of entries here.
+// We need to provide an array of all urls that our PWA should cache. 
+//In other words, we're telling the PWA to be prepared to use the service worker anytime the browser tries to hit any of these routes. 
+//In a large web app there could be lots of entries here.
 const urlsToCache = [
   "/",
   "/db.js",
@@ -13,7 +19,8 @@ const urlsToCache = [
   "/icons/icon-512x512.png"
 ];
 
-// This code, as you might imagine, fires when the user has chosen to install the web app on their machine as a standalone PWA. You won't need to modify this code. Keep it exactly as-is.
+// Fires when the user has chosen to install the web app on their machine as a standalone PWA. 
+// You won't need to modify this code. Keep it exactly as-is.
 self.addEventListener("install", function(event) {
   // Perform install steps
   event.waitUntil(
@@ -24,7 +31,9 @@ self.addEventListener("install", function(event) {
   );
 });
 
-// This is the heart of the PWA functionality. This code tells the service worker to listen for any events where a fetch (api call) is being made. This is when, normally, the browser would send a request to the server. You can use all of this code below as-is
+// This is the heart of the PWA functionality. 
+//This code tells the service worker to listen for any events where a fetch (api call) is being made. 
+//This is when, normally, the browser would send a request to the server. You can use all of this code below as-is
 self.addEventListener("fetch", function(event) {
   // By making sure all our fetch routes have the "/api/" prefix, it's easy to identify the ones we want to intercept
   if (event.request.url.includes("/api/")) {
@@ -43,7 +52,8 @@ self.addEventListener("fetch", function(event) {
             return response;
           })
 
-          // This code runs if the fetch fails; ie: there is no Internet connection. In this case it pulls the correct saved data from the cache and sends it back instead.
+          // This code runs if the fetch fails; ie: there is no Internet connection. 
+          //In this case it pulls the correct saved data from the cache and sends it back instead.
           .catch(err => {
             // Network request failed, try to get it from the cache.
             return cache.match(event.request);
