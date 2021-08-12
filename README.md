@@ -36,7 +36,7 @@ Application's appearance and functionality:
 
 ## Links to the deployed application
 
-  * Heroku URL: https://sheltered-cliffs-60025.herokuapp.com/Add domain
+  * Heroku URL: https://sheltered-cliffs-60025.herokuapp.com/
   
   * Github repository: https://github.com/Tewol/19-pwa-progressive-budget
   
