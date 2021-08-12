@@ -30,7 +30,7 @@ THEN that will be shown on the page, and added to their transaction history when
 Application's appearance and functionality:
 
 
-![.](./images/pic.png)
+![.](./public/pic.png)
 
 - - -
 
